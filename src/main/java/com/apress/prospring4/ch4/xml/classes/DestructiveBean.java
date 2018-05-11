@@ -2,13 +2,16 @@ package com.apress.prospring4.ch4.xml.classes;
 
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class DestructiveBean implements InitializingBean{
+public class DestructiveBean implements InitializingBean,BeanNameAware{
     private static final Logger LOGGER = Logger.getLogger(DestructiveBean.class);
+
+    private String beanName;
 
     private String filePath;
     private File file;
@@ -27,6 +30,16 @@ public class DestructiveBean implements InitializingBean{
 
     public void setFile(File file) {
         this.file = file;
+    }
+
+    public String getBeanName() {
+        return beanName;
+    }
+
+    public void setBeanName(String s)
+    // This method will be set the bean ID it to the fields beanName
+    {
+        this.beanName = s;
     }
 
     public void afterPropertiesSet() throws Exception

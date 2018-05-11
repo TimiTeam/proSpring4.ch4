@@ -13,8 +13,10 @@
           init-method="init" p:age="50"/>
     <bean id="simpleBean3" class="com.apress.prospring4.ch4.xml.classes.SimpleBean"
           init-method="init" p:name="Jack Winston"/>
+
     <bean id="destructiveBean" class="com.apress.prospring4.ch4.xml.classes.DestructiveBean"
           p:filePath="D:\Timur\Penguins.jpg"
           destroy-method="destroy"/>
+    <!--this is destroy-method-->
 
 </beans>

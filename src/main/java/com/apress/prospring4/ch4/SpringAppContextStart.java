@@ -22,9 +22,10 @@ public class SpringAppContextStart {
 //        LOGGER.info(getBean("simpleBean2",context).toString());
 //        LOGGER.info(getBean("simpleBean3",context).toString());
 
+        genericCont.registerShutdownHook();
         DestructiveBean bean = genericCont.getBean("destructiveBean",DestructiveBean.class);
-        LOGGER.info(bean.toString());
-        genericCont.close(); // This method for called all destroyed methods
+        LOGGER.info(bean.toString()+"\n and bean ID: "+bean.getBeanName());
+//        genericCont.close(); // This method for called all destroyed methods
 
     }
     private static SimpleBean getBean(String beanName, ApplicationContext context){

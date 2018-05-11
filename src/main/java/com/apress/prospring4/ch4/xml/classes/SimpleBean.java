@@ -2,13 +2,16 @@ package com.apress.prospring4.ch4.xml.classes;
 
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.BeanNameAware;
 
-public class SimpleBean {
+public class SimpleBean{
+
     private static final Logger LOGGER = Logger.getLogger(SimpleBean.class);
     private static final String DEFAULT_NAME = "Luke Skywalker";
 
     private String name;
     private int age = Integer.MIN_VALUE;
+
 
     public static String getDefaultName() {
         return DEFAULT_NAME;
@@ -25,6 +28,7 @@ public class SimpleBean {
     public int getAge() {
         return age;
     }
+
 
     public void setAge(int age) {
         this.age = age;
