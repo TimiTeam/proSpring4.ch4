@@ -1,10 +1,12 @@
 package com.apress.prospring4.ch4;
 
 
+import com.apress.prospring4.ch4.xml.classes.DestructiveBean;
 import com.apress.prospring4.ch4.xml.classes.SimpleBean;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class SpringAppContextStart {
     private static final Logger LOGGER = Logger.getLogger(SpringAppContextStart.class);
@@ -13,9 +15,17 @@ public class SpringAppContextStart {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("xml-bean-application-context.xml");
 
-        LOGGER.info(getBean("simpleBean1",context).toString());
-        LOGGER.info(getBean("simpleBean2",context).toString());
-        LOGGER.info(getBean("simpleBean3",context).toString());
+        GenericXmlApplicationContext genericCont = new
+                GenericXmlApplicationContext("xml-bean-application-context.xml");
+
+//        LOGGER.info(getBean("simpleBean1",context).toString());
+//        LOGGER.info(getBean("simpleBean2",context).toString());
+//        LOGGER.info(getBean("simpleBean3",context).toString());
+
+        DestructiveBean bean = genericCont.getBean("destructiveBean",DestructiveBean.class);
+        LOGGER.info(bean.toString());
+        genericCont.close(); // This method for called all destroyed methods
+
     }
     private static SimpleBean getBean(String beanName, ApplicationContext context){
         try {
@@ -26,5 +36,4 @@ public class SpringAppContextStart {
             return null;
         }
     }
-
 }
