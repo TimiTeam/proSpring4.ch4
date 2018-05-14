@@ -8,6 +8,10 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.core.io.Resource;
+
+import java.io.File;
+import java.io.IOException;
 
 public class SpringAppContextStart {
     private static final Logger LOGGER = Logger.getLogger(SpringAppContextStart.class);
@@ -32,8 +36,22 @@ public class SpringAppContextStart {
         digester.digest("My name is Timur");
 
 
+        Resource resource1 = context.getResource("classpath:text.txt");
+        displayInfo(resource1);
+        resource1 = context.getResource("http://www.google.com");
+        displayInfo(resource1);
     }
 
+
+    private static void displayInfo(Resource resource){
+        try {
+            LOGGER.info("\n"+resource.getClass()+"\n"+
+            resource.getURL().getContent()+"\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private static SimpleBean getBean(String beanName, ApplicationContext context){
         try {
