@@ -2,6 +2,7 @@ package com.apress.prospring4.ch4;
 
 
 import com.apress.prospring4.ch4.xml.classes.DestructiveBean;
+import com.apress.prospring4.ch4.xml.classes.MessageDigester;
 import com.apress.prospring4.ch4.xml.classes.SimpleBean;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -22,12 +23,18 @@ public class SpringAppContextStart {
 //        LOGGER.info(getBean("simpleBean2",context).toString());
 //        LOGGER.info(getBean("simpleBean3",context).toString());
 
-        genericCont.registerShutdownHook();
-        DestructiveBean bean = genericCont.getBean("destructiveBean",DestructiveBean.class);
-        LOGGER.info(bean.toString()+"\n and bean ID: "+bean.getBeanName());
+//        genericCont.registerShutdownHook();
+//        DestructiveBean bean = genericCont.getBean("destructiveBean",DestructiveBean.class);
+//        LOGGER.info(bean.toString()+"\n and bean ID: "+bean.getBeanName());
 //        genericCont.close(); // This method for called all destroyed methods
 
+        MessageDigester digester = context.getBean("digester",MessageDigester.class);
+        digester.digest("My name is Timur");
+
+
     }
+
+
     private static SimpleBean getBean(String beanName, ApplicationContext context){
         try {
             SimpleBean bean = context.getBean(beanName,SimpleBean.class);

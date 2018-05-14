@@ -19,4 +19,13 @@
           destroy-method="destroy"/>
     <!--this is destroy-method-->
 
+    <bean id="shaDigest" class="com.apress.prospring4.ch4.xml.classes.MessageDigestFactoryBean"
+          p:algorithmName="SHA1"/>
+    <!--created class with algorithm 'SHA1'-->
+    <bean id="defaultDigest" class="com.apress.prospring4.ch4.xml.classes.MessageDigestFactoryBean"/>
+    <!--default values of algorithm - 'MD5'-->
+    <bean id="digester" class="com.apress.prospring4.ch4.xml.classes.MessageDigester"
+          p:digest1-ref="shaDigest"
+          p:digest2-ref="defaultDigest"/>
+
 </beans>
